@@ -102,6 +102,25 @@ class USersController {
             return res.status(500).json({ error: "Internal server error."});
         }
     }
+
+    async recoverUser(req: Request, res: Response) {
+        if(req.headers.authorization) {
+            const [authType, token] = req.headers.authorization.split(' ');
+            if(authType === 'Bearer') {
+                
+                try {
+
+                    const user = TokenService.decoded(token);
+                    return res.json(user);
+                
+                } catch (err) {
+                    return res.status(401).json({ error: "Token invalid."});
+                }
+            }
+        }
+        
+    }
+
 }
 
 export default new USersController;

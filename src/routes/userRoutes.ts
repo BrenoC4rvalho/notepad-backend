@@ -6,6 +6,7 @@ const routes = Router();
 
 routes.post('/signup', UsersController.create);
 routes.post('/signin', UsersController.session);
+routes.get('/getuser', UsersController.recoverUser);
 
 //precisa de autenticação
 
